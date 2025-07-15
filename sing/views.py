@@ -6,8 +6,8 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Singer, Song, Tag
-from .serializers import SingerSerializer, SongSerializer, TagSerializer
+from .models import Singer, Song, Tag, Comment
+from .serializers import SingerSerializer, SongSerializer, CommentSerializer, TagSerializer
 
 
 @api_view(['GET', 'POST'])

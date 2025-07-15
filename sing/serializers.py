@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Singer, Song, Tag
+from .models import Singer, Song, Tag, Comment
 
 class SongSerializer(serializers.ModelSerializer):
     singer = serializers.SlugRelatedField(
@@ -11,10 +11,19 @@ class SongSerializer(serializers.ModelSerializer):
         model = Song
         fields = '__all__'
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Comment
+        fields='__all__'
+        read_only_fields=['movie']
+
 
 class SingerSerializer(serializers.ModelSerializer):
     id = serializers.CharField(read_only=True)
     songs = SongSerializer(many=True, read_only=True)
+
+    comments = serializers.SerializerMethodField(read_only=True)
+
 
     def get_comments(self, instance):
         serializer = CommentSerializer(instance.comments, many=True)
