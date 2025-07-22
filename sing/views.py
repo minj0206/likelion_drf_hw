@@ -10,6 +10,9 @@ from .models import Singer, Song, Tag, Comment
 from .serializers import SingerSerializer, SongSerializer, CommentSerializer, TagSerializer
 
 
+def test():
+    pass
+
 @api_view(['GET', 'POST'])
 def singer_list_create(request):
     if request.method == 'GET':
